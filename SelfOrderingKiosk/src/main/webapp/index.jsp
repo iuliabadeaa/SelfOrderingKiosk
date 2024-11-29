@@ -5,8 +5,7 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<button onclick="window.location.href='dine_in.jsp'">DINE IN</button>
+<button onclick="window.location.href='take_away.jsp'">TAKE AWAY</button>
 </body>
 </html>
