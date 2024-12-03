@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>JSP - Hello World</title>
+  <title>Start page</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,7 +15,14 @@
       background-color: #f0f0f0;
     }
     .button-container {
-      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .button-container img {
+      width: 100px;
+      height: auto;
+      margin-right: 20px;
     }
     button {
       background-color: #4CAF50;
@@ -41,8 +48,12 @@
 </head>
 <body>
 <div class="button-container">
-  <button onclick="window.location.href='dine_in.jsp'">DINE IN</button>
-  <button onclick="window.location.href='take_away.jsp'">TAKE AWAY</button>
+
+  <img src="images/plate-utensils.png" alt="Dine In">
+  <button onclick="window.location.href='/SelfOrderingKiosk-1.0-SNAPSHOT/dine_in?section=oferte'">DINE IN</button>
+
+  <img src="images/grocery-bag.png" alt="Take Away">
+  <button onclick="window.location.href='/SelfOrderingKiosk-1.0-SNAPSHOT/take_away?section=oferte'">TAKE AWAY</button>
 </div>
 </body>
 </html>

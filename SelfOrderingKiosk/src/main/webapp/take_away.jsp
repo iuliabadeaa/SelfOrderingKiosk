@@ -1,16 +1,71 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: maria
-  Date: 29.11.2024
-  Time: 10:17
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String activeSection = (String) request.getAttribute("activeSection");
+%>
 <html>
 <head>
     <title>Take away menu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .menu-bar {
+            width: 200px;
+            background-color: #f4f4f4;
+            position: fixed;
+            height: 100%;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .menu-bar ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .menu-bar ul li {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        .menu-bar ul li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        .menu-bar ul li a:hover {
+            background-color: #ddd;
+            color: #000;
+        }
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-<div>Take away menu</div>
+<div class="menu-bar">
+    <ul>
+        <li><a href="take_away?section=oferte">Oferte</a></li>
+        <li><a href="take_away?section=meniuri">Meniuri</a></li>
+        <li><a href="take_away?section=bauturi">Băuturi</a></li>
+        <li><a href="take_away?section=sandwich-uri">Sandwich-uri</a></li>
+    </ul>
+</div>
+<div class="content">
+    <% if ("oferte".equals(activeSection)) { %>
+    <h2>Oferte</h2>
+    <p>Aici se afișează meniul cu oferte speciale.</p>
+    <% } else if ("meniuri".equals(activeSection)) { %>
+    <h2>Meniuri</h2>
+    <p>Aici se afișează lista meniurilor disponibile.</p>
+    <% } else if ("bauturi".equals(activeSection)) { %>
+    <h2>Băuturi</h2>
+    <p>Aici se afișează lista băuturilor disponibile.</p>
+    <% } else if ("sandwich-uri".equals(activeSection)) { %>
+    <h2>Sandwich-uri</h2>
+    <p>Aici se afișează lista sandwich-urilor.</p>
+    <% } %>
+</div>
 </body>
 </html>

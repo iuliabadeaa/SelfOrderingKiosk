@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: maria
-  Date: 29.11.2024
-  Time: 10:17
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String activeSection = (String) request.getAttribute("activeSection");
@@ -53,11 +46,11 @@
 <body>
 <div class="menu-bar">
     <ul>
-        <li><a href="menu?section=oferte">Oferte</a></li>
-        <li><a href="menu?section=meniuri">Meniuri</a></li>
-        <li><a href="menu?section=deserturi">Deserturi</a></li>
-        <li><a href="menu?section=bauturi">Băuturi</a></li>
-        <li><a href="menu?section=sandwich-uri">Sandwich-uri</a></li>
+        <li><a href="dine_in?section=oferte">Oferte</a></li>
+        <li><a href="dine_in?section=meniuri">Meniuri</a></li>
+        <li><a href="dine_in?section=deserturi">Deserturi</a></li>
+        <li><a href="dine_in?section=bauturi">Băuturi</a></li>
+        <li><a href="dine_in?section=sandwich-uri">Sandwich-uri</a></li>
     </ul>
 </div>
 <div class="content">
