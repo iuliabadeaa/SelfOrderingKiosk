@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
+@Table(name="order")
 public class Order {
 
     @GeneratedValue
@@ -14,7 +15,7 @@ public class Order {
     private Long id;
     private String type;
 
-    @OneToMany(mappedBy = "id", orphanRemoval = true)
+    @OneToMany(mappedBy = "order", orphanRemoval = true)
     private List<Product> products=new ArrayList<>();
 
     public String getType() {

@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
     String activeSection = (String) request.getAttribute("activeSection");
 %>
@@ -57,6 +58,27 @@
     <% if ("oferte".equals(activeSection)) { %>
     <h2>Oferte</h2>
     <p>Aici se afișează meniul cu oferte speciale.</p>
+    <div class="meniu_oferte">
+        <c:forEach var="product" items="${products}">
+            <div class="row">
+                <div class="column">
+                    ${product.id}
+                </div>
+                <div class="column">
+                    ${product.name}
+                </div>
+                <div>
+                    ${product.description}
+                </div>
+                <div>
+                        ${product.price}
+                </div>
+                <div>
+                        ${product.order_id}
+                </div>
+            </div>
+        </c:forEach>
+    </div>
     <% } else if ("meniuri".equals(activeSection)) { %>
     <h2>Meniuri</h2>
     <p>Aici se afișează lista meniurilor disponibile.</p>
