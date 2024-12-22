@@ -57,14 +57,14 @@
 <div class="content">
     <% if ("oferte".equals(activeSection)) { %>
     <h2>Oferte</h2>
-    <p>Aici se afișează meniul cu oferte speciale.</p>
     <div class="meniu_oferte">
         <c:forEach var="product" items="${products}">
+            <c:if test="${product.category == 'Oferte'}">
             <div class="row">
-                <div class="column">
-                    ${product.id}
+                <div>
+                    <img src="${product.image}" alt="${product.name}" style="width: 200px; height: auto;">
                 </div>
-                <div class="column">
+                <div >
                     ${product.name}
                 </div>
                 <div>
@@ -73,32 +73,32 @@
                 <div>
                         ${product.price}
                 </div>
-                <div>
-                        ${product.category}
-                </div>
+                <br>
+                <br>
             </div>
+            </c:if>
         </c:forEach>
     </div>
     <% } else if ("meniuri".equals(activeSection)) { %>
     <h2>Meniuri</h2>
-    <p>Aici se afișează lista meniurilor disponibile.</p>
-
     <div class="meniuri">
-        <c:forEach var="orderedProduct" items="${orderedProducts}">
-            <div class="row">
-                <div class="column">
-                        ${orderedProduct.id}
+        <c:forEach var="product" items="${products}">
+            <c:if test="${product.category == 'Meniuri'}">
+                <div class="row">
+                    <div>
+                        <img src="${product.image}" alt="${product.name}" style="width: 200px; height: auto;">
+                    </div>
+                    <div class="column">
+                            ${product.name}
+                    </div>
+                    <div>
+                            ${product.description}
+                    </div>
+                    <div>
+                            ${product.price}
+                    </div>
                 </div>
-                <div class="column">
-                        ${orderedProduct.name}
-                </div>
-                <div>
-                        ${orderedProduct.price}
-                </div>
-                <div>
-                        ${orderedProduct.orderId}
-                </div>
-            </div>
+            </c:if>
         </c:forEach>
     </div>
 
