@@ -13,10 +13,7 @@ public class Product {
     String name;
     String description;
     Double price;
-
-    @ManyToOne
-    @JoinColumn(name="order_id")
-    Order order;
+    String category;
 
     public Long getId() {
         return id;
@@ -24,6 +21,14 @@ public class Product {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getName() {
@@ -50,11 +55,4 @@ public class Product {
         this.description = description;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

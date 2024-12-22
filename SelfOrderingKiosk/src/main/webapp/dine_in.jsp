@@ -74,7 +74,7 @@
                         ${product.price}
                 </div>
                 <div>
-                        ${product.order_id}
+                        ${product.category}
                 </div>
             </div>
         </c:forEach>
@@ -82,6 +82,26 @@
     <% } else if ("meniuri".equals(activeSection)) { %>
     <h2>Meniuri</h2>
     <p>Aici se afișează lista meniurilor disponibile.</p>
+
+    <div class="meniuri">
+        <c:forEach var="orderedProduct" items="${orderedProducts}">
+            <div class="row">
+                <div class="column">
+                        ${orderedProduct.id}
+                </div>
+                <div class="column">
+                        ${orderedProduct.name}
+                </div>
+                <div>
+                        ${orderedProduct.price}
+                </div>
+                <div>
+                        ${orderedProduct.orderId}
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+
     <% } else if ("deserturi".equals(activeSection)) { %>
     <h2>Deserturi</h2>
     <p>Aici se afișează lista deserturilor.</p>

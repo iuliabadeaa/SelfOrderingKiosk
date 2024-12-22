@@ -36,11 +36,7 @@ public class ProductsBean {
     private List<ProductDto> copyProductsToDto(List<Product> list){
         List<ProductDto> dtos=new ArrayList<>();
         for(Product product : list){
-            Long o_id = 0L;
-            if (product.getOrder() != null) {
-                o_id = product.getOrder().getId();
-            }
-            ProductDto p=new ProductDto(product.getId(),product.getName(),product.getDescription(),product.getPrice(),o_id);
+            ProductDto p=new ProductDto(product.getId(),product.getName(),product.getDescription(),product.getPrice(), product.getCategory());
             dtos.add(p);
         }
         return dtos;

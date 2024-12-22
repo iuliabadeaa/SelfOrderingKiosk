@@ -3,7 +3,6 @@ package entities;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -16,7 +15,7 @@ public class Order {
     private String type;
 
     @OneToMany(mappedBy = "order", orphanRemoval = true)
-    private List<Product> products=new ArrayList<>();
+    private List<OrderedProduct> products=new ArrayList<>();
 
     public String getType() {
         return type;
@@ -26,11 +25,11 @@ public class Order {
         this.type = type;
     }
 
-    public void setProducts(List<Product> products) {
+    public void setOrderedProducts(List<OrderedProduct> products) {
         this.products = products;
     }
 
-    public List<Product> getProducts() {
+    public List<OrderedProduct> getOrderedProducts() {
         return products;
     }
 
