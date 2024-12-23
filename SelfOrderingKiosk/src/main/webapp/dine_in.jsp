@@ -39,8 +39,59 @@
             color: #000;
         }
         .content {
-            margin-left: 220px;
+            flex: 3;
             padding: 20px;
+        }
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            margin-left: 220px;
+        }
+        .cart {
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-left: 1px solid #ddd;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+        .quantity-input {
+            width: 50px;
+            height: 30px;
+        }
+        .add-to-cart {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .add-to-cart:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+        }
+        .add-to-cart:active {
+            transform: scale(1.05);
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        #cart-items {
+            list-style: none;
+            padding: 0;
+        }
+
+        #cart-items li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
         }
     </style>
 </head>
@@ -54,6 +105,7 @@
         <li><a href="dine_in?section=sandwich-uri">Sandwich-uri</a></li>
     </ul>
 </div>
+<div class="content-container">
 <div class="content">
     <% if ("oferte".equals(activeSection)) { %>
     <h2>Oferte</h2>
@@ -73,6 +125,16 @@
                 <div>
                         ${product.price}
                 </div>
+
+                <div>
+                    <form action="add_to_cart" method="post">
+                        <input type="hidden" name="productName" value="${product.name}">
+                        <input type="hidden" name="productPrice" value="${product.price}">
+                        <input type="number" name="quantity" class="quantity-input" min="1" value="1">
+                        <button class="add-to-cart" type="submit">ADD TO CART</button>
+                    </form>
+                </div>
+
                 <br>
                 <br>
             </div>
@@ -97,6 +159,18 @@
                     <div>
                             ${product.price}
                     </div>
+
+                    <div>
+                        <form action="add_to_cart" method="post">
+                            <input type="hidden" name="productName" value="${product.name}">
+                            <input type="hidden" name="productPrice" value="${product.price}">
+                            <input type="number" name="quantity" class="quantity-input" min="1" value="1">
+                            <button class="add-to-cart" type="submit">ADD TO CART</button>
+                        </form>
+                    </div>
+
+                    <br>
+                    <br>
                 </div>
             </c:if>
         </c:forEach>
@@ -112,6 +186,26 @@
     <h2>Sandwich-uri</h2>
     <p>Aici se afișează lista sandwich-urilor.</p>
     <% } %>
+</div>
+<div class="cart">
+    <h3>Comanda dumneavoastră</h3>
+    <ul>
+        <c:forEach var="item" items="${sessionScope.cart}">
+            <li>
+                    ${item.name} - ${item.quantity} x ${item.price} =
+                <strong>${item.quantity * item.price}</strong>
+            </li>
+        </c:forEach>
+    </ul>
+    <c:if test="${not empty sessionScope.cart}">
+        <p><strong>Total:</strong>
+            <c:forEach var="item" items="${sessionScope.cart}" varStatus="status">
+                <c:set var="total" value="${item.quantity * item.price + (status.index > 0 ? total : 0)}"/>
+            </c:forEach>
+                ${total}
+        </p>
+    </c:if>
+</div>
 </div>
 </body>
 </html>

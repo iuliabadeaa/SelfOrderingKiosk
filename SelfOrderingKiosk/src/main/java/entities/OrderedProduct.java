@@ -12,10 +12,14 @@ public class OrderedProduct {
 
     String name;
     Double price;
+    Integer quantity;
 
     @ManyToOne
     @JoinColumn(name="order_id")
     Order order;
+
+    public OrderedProduct() { }
+
 
     public Long getId() {
         return id;
@@ -25,6 +29,13 @@ public class OrderedProduct {
         this.id = id;
     }
 
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
 
     public String getName() {
         return name;

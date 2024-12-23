@@ -36,5 +36,6 @@ public class ProductDto {
     public String getCategory() {
         return category;
     }
+
     public String getImage() { return image; }
 }

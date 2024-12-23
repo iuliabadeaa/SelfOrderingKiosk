@@ -24,7 +24,7 @@ public class ProductsBean {
     public List<ProductDto> findAllProducts() {
         LOG.info("findAllProducts");
         try {
-            TypedQuery<Product> query = entityManager.createQuery("select p from Product p", Product.class);
+            TypedQuery<Product> query = entityManager.createQuery("select pr from Product pr", Product.class);
             List<Product> products = query.getResultList();
             return copyProductsToDto(products);
         }
@@ -34,12 +34,12 @@ public class ProductsBean {
     }
 
     private List<ProductDto> copyProductsToDto(List<Product> list){
-        List<ProductDto> dtos=new ArrayList<>();
+        List<ProductDto> productsDtos=new ArrayList<>();
         for(Product product : list){
             ProductDto p=new ProductDto(product.getId(),product.getName(),product.getDescription(),product.getPrice(), product.getCategory(), product.getImage());
-            dtos.add(p);
+            productsDtos.add(p);
         }
-        return dtos;
+        return productsDtos;
     }
 
 

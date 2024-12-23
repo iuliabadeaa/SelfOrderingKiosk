@@ -38,7 +38,7 @@ public class OrderedProductsBean {
         for(OrderedProduct orderedProduct : list){
             Long orderId = (orderedProduct.getOrder() != null) ? orderedProduct.getOrder().getId() : null;
 
-            OrderedProductDto pdto=new OrderedProductDto(orderedProduct.getId(),orderedProduct.getName(),orderedProduct.getPrice(), orderId);
+            OrderedProductDto pdto=new OrderedProductDto(orderedProduct.getId(),orderedProduct.getName(),orderedProduct.getPrice(), orderId, orderedProduct.getQuantity());
             dtos.add(pdto);
         }
         return dtos;

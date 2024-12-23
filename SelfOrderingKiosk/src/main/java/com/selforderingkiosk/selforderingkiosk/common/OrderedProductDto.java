@@ -7,12 +7,14 @@ public class OrderedProductDto {
     private String name;
     private Double price;
     private Long orderId;
+    private Integer quantity;
 
-    public OrderedProductDto(Long id, String name, double price, Long orderId) {
+    public OrderedProductDto(Long id, String name, double price, Long orderId, Integer quantity) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.orderId = orderId;
+        this.quantity = quantity;
     }
 
     public Long getId() {
@@ -29,5 +31,8 @@ public class OrderedProductDto {
 
     public Long getOrderId() {
         return orderId;
+    }
+    public Integer getQuantity() {
+        return quantity;
     }
 }

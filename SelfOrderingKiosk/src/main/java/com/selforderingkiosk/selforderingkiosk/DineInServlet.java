@@ -20,6 +20,7 @@ public class DineInServlet extends HttpServlet {
     OrderedProductsBean orderedProductsBean;
 
 
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String section = request.getParameter("section");
