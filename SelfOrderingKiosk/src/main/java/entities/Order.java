@@ -9,10 +9,12 @@ import java.util.List;
 @Table(name="orders")
 public class Order {
 
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     private String type;
+    private String status;
+    private Double total;
 
     @OneToMany(mappedBy = "order", orphanRemoval = true)
     private List<OrderedProduct> products=new ArrayList<>();
@@ -23,6 +25,22 @@ public class Order {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
     public void setOrderedProducts(List<OrderedProduct> products) {

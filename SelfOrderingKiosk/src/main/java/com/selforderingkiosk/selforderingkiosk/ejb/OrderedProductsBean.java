@@ -33,6 +33,24 @@ public class OrderedProductsBean {
         }
     }
 
+
+    public void createOrderedProducts(String name, Double price, Integer quantity) {
+        LOG.info("createOrderedProducts");
+
+        try {
+            OrderedProduct orderedProduct = new OrderedProduct();
+            orderedProduct.setName(name);
+            orderedProduct.setPrice(price);
+            orderedProduct.setQuantity(quantity);
+            entityManager.persist(orderedProduct);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new EJBException("Error creating ordered product", e);
+        }
+    }
+
+
     private List<OrderedProductDto> copyOrderedProductsToDto(List<OrderedProduct> list){
         List<OrderedProductDto> dtos=new ArrayList<>();
         for(OrderedProduct orderedProduct : list){

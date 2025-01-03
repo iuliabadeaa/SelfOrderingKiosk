@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <%
     String activeSection = (String) request.getAttribute("activeSection");
 %>
@@ -200,10 +202,16 @@
     <c:if test="${not empty sessionScope.cart}">
         <p><strong>Total:</strong>
             <c:forEach var="item" items="${sessionScope.cart}" varStatus="status">
-                <c:set var="total" value="${item.quantity * item.price + (status.index > 0 ? total : 0)}"/>
+                <c:set var="total" value="${item.quantity * item.price + (status.index > 0 ? total : 0)}" />
             </c:forEach>
-                ${total}
+            <fmt:formatNumber value="${total}" type="number" maxFractionDigits="2" minFractionDigits="2" var="formattedTotal"/>
         </p>
+        <div>
+            <form action="place_order" method="post">
+                <input type="hidden" name="total" value="${formattedTotal}" />
+                <button class="add-to-cart" type="submit">PLACE ORDER</button>
+            </form>
+        </div>
     </c:if>
 </div>
 </div>

@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="ordered_product")
 public class OrderedProduct {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
