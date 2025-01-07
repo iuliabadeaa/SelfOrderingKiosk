@@ -1,6 +1,7 @@
 package com.selforderingkiosk.selforderingkiosk;
 
 import com.selforderingkiosk.selforderingkiosk.ejb.OrderedProductsBean;
+import com.selforderingkiosk.selforderingkiosk.ejb.OrdersBean;
 import entities.Order;
 import entities.OrderedProduct;
 import jakarta.inject.Inject;
@@ -19,12 +20,25 @@ public class PlaceOrderServlet extends HttpServlet {
 
     @Inject
     OrderedProductsBean orderedProductsBean;
+    @Inject
+    OrdersBean ordersBean;
 
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
         String totalStr = req.getParameter("total");
+
+
+        double total=0;
+        if (totalStr != null) {
+            try {
+                total = Double.parseDouble(totalStr);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+        ordersBean.createOrder("Dine In", total, "Preparing");
 
         List<OrderedProduct> cart = (List<OrderedProduct>) session.getAttribute("cart");
         if (cart == null || cart.isEmpty()) {
@@ -38,20 +52,6 @@ public class PlaceOrderServlet extends HttpServlet {
             orderedProductsBean.createOrderedProducts(name,price,quantity);
 
         }
-
-        Order order=new Order();
-        order.setType("Dine In");
-        if (totalStr != null) {
-            try {
-                double total = Double.parseDouble(totalStr);
-
-                order.setTotal(total);
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-        }
-        order.setStatus("Preparing");
-
-        resp.sendRedirect(req.getContextPath()+"index");
+        resp.sendRedirect(req.getContextPath());
     }
 }

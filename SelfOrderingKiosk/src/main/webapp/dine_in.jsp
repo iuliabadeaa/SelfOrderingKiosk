@@ -201,10 +201,13 @@
     </ul>
     <c:if test="${not empty sessionScope.cart}">
         <p><strong>Total:</strong>
-            <c:forEach var="item" items="${sessionScope.cart}" varStatus="status">
-                <c:set var="total" value="${item.quantity * item.price + (status.index > 0 ? total : 0)}" />
+            <c:set var="total" value="0" scope="page" />
+            <c:forEach var="item" items="${sessionScope.cart}">
+                <c:set var="itemTotal" value="${item.quantity * item.price}" />
+                <c:set var="total" value="${total + itemTotal}" />
             </c:forEach>
             <fmt:formatNumber value="${total}" type="number" maxFractionDigits="2" minFractionDigits="2" var="formattedTotal"/>
+                ${formattedTotal}
         </p>
         <div>
             <form action="place_order" method="post">
@@ -213,6 +216,7 @@
             </form>
         </div>
     </c:if>
+
 </div>
 </div>
 </body>

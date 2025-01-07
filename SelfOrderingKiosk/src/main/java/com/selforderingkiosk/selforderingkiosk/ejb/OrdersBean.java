@@ -36,11 +36,10 @@ public class OrdersBean {
     }
 
 
-    public void createOrder(Long id, String type, Double total, String status){
+    public void createOrder(String type, Double total, String status){
         LOG.info("createOrder");
         try {
             Order order = new Order();
-            order.setId(id);
             order.setType(type);
             order.setTotal(total);
             order.setStatus(status);
