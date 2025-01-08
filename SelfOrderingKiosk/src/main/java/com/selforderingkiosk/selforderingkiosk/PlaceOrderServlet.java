@@ -38,20 +38,21 @@ public class PlaceOrderServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        ordersBean.createOrder("Dine In", total, "Preparing");
+        Order o = ordersBean.createOrder("Dine In", total, "Preparing");
 
         List<OrderedProduct> cart = (List<OrderedProduct>) session.getAttribute("cart");
         if (cart == null || cart.isEmpty()) {
             resp.sendRedirect("dine_in?section=oferte");
         }
 
+
         for (OrderedProduct p : cart) {
             String name = p.getName();
             Double price = p.getPrice();
             Integer quantity = p.getQuantity();
-            orderedProductsBean.createOrderedProducts(name,price,quantity);
+            orderedProductsBean.createOrderedProducts(name,price,quantity, o);
 
         }
-        resp.sendRedirect(req.getContextPath());
-    }
+        session.removeAttribute("cart");
+        resp.sendRedirect(req.getContextPath() + "/confirmation?orderNumber=" + o.getId());    }
 }

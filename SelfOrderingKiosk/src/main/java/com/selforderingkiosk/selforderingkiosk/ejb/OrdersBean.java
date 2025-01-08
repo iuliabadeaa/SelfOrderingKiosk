@@ -36,10 +36,10 @@ public class OrdersBean {
     }
 
 
-    public void createOrder(String type, Double total, String status){
+    public Order createOrder(String type, Double total, String status){
         LOG.info("createOrder");
+        Order order = new Order();
         try {
-            Order order = new Order();
             order.setType(type);
             order.setTotal(total);
             order.setStatus(status);
@@ -48,6 +48,7 @@ public class OrdersBean {
             e.printStackTrace();
             throw new EJBException("Error creating order", e);
         }
+        return order;
     }
 
 

@@ -44,6 +44,33 @@
       transform: scale(1.05);
       box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
     }
+
+    .adminbtn {
+      background-image: url('images/user.png');
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      border: none;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      color: white;
+      text-align: center;
+      line-height: 50px;
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      color: white;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
   </style>
 </head>
 <body>
@@ -54,6 +81,10 @@
 
   <img src="images/grocery-bag.png" alt="Take Away">
   <button onclick="window.location.href='/SelfOrderingKiosk-1.0-SNAPSHOT/take_away?section=oferte'">TAKE AWAY</button>
+
+  <footer>
+  <button class="adminbtn" onclick="window.location.href='/SelfOrderingKiosk-1.0-SNAPSHOT/login.jsp'"></button>
+  </footer>
 </div>
 </body>
 </html>

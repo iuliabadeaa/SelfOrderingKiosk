@@ -180,14 +180,106 @@
 
     <% } else if ("deserturi".equals(activeSection)) { %>
     <h2>Deserturi</h2>
-    <p>Aici se afișează lista deserturilor.</p>
+    <div class="meniuri">
+        <c:forEach var="product" items="${products}">
+            <c:if test="${product.category == 'Deserturi'}">
+                <div class="row">
+                    <div>
+                        <img src="${product.image}" alt="${product.name}" style="width: 200px; height: auto;">
+                    </div>
+                    <div class="column">
+                            ${product.name}
+                    </div>
+                    <div>
+                            ${product.description}
+                    </div>
+                    <div>
+                            ${product.price}
+                    </div>
+
+                    <div>
+                        <form action="add_to_cart" method="post">
+                            <input type="hidden" name="productName" value="${product.name}">
+                            <input type="hidden" name="productPrice" value="${product.price}">
+                            <input type="number" name="quantity" class="quantity-input" min="1" value="1">
+                            <button class="add-to-cart" type="submit">ADD TO CART</button>
+                        </form>
+                    </div>
+
+                    <br>
+                    <br>
+                </div>
+            </c:if>
+        </c:forEach>
+    </div>
     <% } else if ("bauturi".equals(activeSection)) { %>
     <h2>Băuturi</h2>
-    <p>Aici se afișează lista băuturilor disponibile.</p>
+    <div class="meniuri">
+        <c:forEach var="product" items="${products}">
+            <c:if test="${product.category == 'Bauturi'}">
+                <div class="row">
+                    <div>
+                        <img src="${product.image}" alt="${product.name}" style="width: 200px; height: auto;">
+                    </div>
+                    <div class="column">
+                            ${product.name}
+                    </div>
+                    <div>
+                            ${product.description}
+                    </div>
+                    <div>
+                            ${product.price}
+                    </div>
+
+                    <div>
+                        <form action="add_to_cart" method="post">
+                            <input type="hidden" name="productName" value="${product.name}">
+                            <input type="hidden" name="productPrice" value="${product.price}">
+                            <input type="number" name="quantity" class="quantity-input" min="1" value="1">
+                            <button class="add-to-cart" type="submit">ADD TO CART</button>
+                        </form>
+                    </div>
+
+                    <br>
+                    <br>
+                </div>
+            </c:if>
+        </c:forEach>
+    </div>
     <% } else if ("sandwich-uri".equals(activeSection)) { %>
     <h2>Sandwich-uri</h2>
-    <p>Aici se afișează lista sandwich-urilor.</p>
-    <% } %>
+    <div class="meniuri">
+        <c:forEach var="product" items="${products}">
+            <c:if test="${product.category == 'Sandwich-uri'}">
+                <div class="row">
+                    <div>
+                        <img src="${product.image}" alt="${product.name}" style="width: 200px; height: auto;">
+                    </div>
+                    <div class="column">
+                            ${product.name}
+                    </div>
+                    <div>
+                            ${product.description}
+                    </div>
+                    <div>
+                            ${product.price}
+                    </div>
+
+                    <div>
+                        <form action="add_to_cart" method="post">
+                            <input type="hidden" name="productName" value="${product.name}">
+                            <input type="hidden" name="productPrice" value="${product.price}">
+                            <input type="number" name="quantity" class="quantity-input" min="1" value="1">
+                            <button class="add-to-cart" type="submit">ADD TO CART</button>
+                        </form>
+                    </div>
+
+                    <br>
+                    <br>
+                </div>
+            </c:if>
+        </c:forEach>
+    </div>    <% } %>
 </div>
 <div class="cart">
     <h3>Comanda dumneavoastră</h3>

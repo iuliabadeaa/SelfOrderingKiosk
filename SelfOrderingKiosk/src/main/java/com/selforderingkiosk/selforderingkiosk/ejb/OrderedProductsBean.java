@@ -1,6 +1,7 @@
 package com.selforderingkiosk.selforderingkiosk.ejb;
 
 import com.selforderingkiosk.selforderingkiosk.common.OrderedProductDto;
+import entities.Order;
 import entities.OrderedProduct;
 
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ public class OrderedProductsBean {
     }
 
 
-    public void createOrderedProducts(String name, Double price, Integer quantity) {
+    public void createOrderedProducts(String name, Double price, Integer quantity, Order o) {
         LOG.info("createOrderedProducts");
 
         try {
@@ -42,6 +43,7 @@ public class OrderedProductsBean {
             orderedProduct.setName(name);
             orderedProduct.setPrice(price);
             orderedProduct.setQuantity(quantity);
+            orderedProduct.setOrder(o);
             entityManager.persist(orderedProduct);
 
         } catch (Exception e) {
