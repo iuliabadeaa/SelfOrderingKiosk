@@ -1,3 +1,4 @@
+<%--<c:if test="${pageContext.request.isUserInRole('ADMIN')}"></c:if>--%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -83,7 +84,7 @@
   <button onclick="window.location.href='/SelfOrderingKiosk-1.0-SNAPSHOT/take_away?section=oferte'">TAKE AWAY</button>
 
   <footer>
-  <button class="adminbtn" onclick="window.location.href='/SelfOrderingKiosk-1.0-SNAPSHOT/login.jsp'"></button>
+  <a class="adminbtn" href="${pageContext.request.contextPath}/AdminPage" ></a>
   </footer>
 </div>
 </body>
