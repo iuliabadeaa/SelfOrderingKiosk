@@ -95,6 +95,14 @@
             padding: 10px;
             border-bottom: 1px solid #ddd;
         }
+        #discount{
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
     </style>
 </head>
 <body>
@@ -144,7 +152,7 @@
         </c:forEach>
     </div>
     <% } else if ("meniuri".equals(activeSection)) { %>
-    <h2>Meniuri</h2>
+    <h2>Meniuri fast food</h2>
     <div class="meniuri">
         <c:forEach var="product" items="${products}">
             <c:if test="${product.category == 'Meniuri'}">
@@ -292,16 +300,20 @@
         </c:forEach>
     </ul>
     <c:if test="${not empty sessionScope.cart}">
-        <p><strong>Total:</strong>
-            <c:set var="total" value="0" scope="page" />
-            <c:forEach var="item" items="${sessionScope.cart}">
-                <c:set var="itemTotal" value="${item.quantity * item.price}" />
-                <c:set var="total" value="${total + itemTotal}" />
-            </c:forEach>
-            <fmt:formatNumber value="${total}" type="number" maxFractionDigits="2" minFractionDigits="2" var="formattedTotal"/>
-                ${formattedTotal}
-        </p>
+        <strong>Total:</strong>
+        <c:if test="${not empty total}">
+            <fmt:formatNumber value="${total}" type="number" maxFractionDigits="2" minFractionDigits="2" />
+        </c:if>
+
+        <c:if test="${not empty errorMessage}">
+            <div style="color: red;">${errorMessage}</div>
+        </c:if>
         <div>
+            <form action="apply_discount" method="post">
+                <input type="hidden" name="total" value="${total}" />
+                <input type="text" id="discount" name="discountCode" placeholder="Introduceți codul de reducere">
+                <button class="add-to-cart" type="submit">APLICĂ CODUL</button>
+            </form>
             <form action="place_order" method="post">
                 <input type="hidden" name="total" value="${formattedTotal}" />
                 <button class="add-to-cart" type="submit">PLACE ORDER</button>
