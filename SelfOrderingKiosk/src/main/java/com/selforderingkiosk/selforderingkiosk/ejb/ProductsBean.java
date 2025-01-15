@@ -4,6 +4,7 @@ import com.selforderingkiosk.selforderingkiosk.common.ProductDto;
 import entities.Product;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import jakarta.ejb.EJBException;
@@ -40,6 +41,14 @@ public class ProductsBean {
             productsDtos.add(p);
         }
         return productsDtos;
+    }
+
+    public void deleteProductsById(Collection<Long> productIds) {
+        LOG.info("deleteProductsById");
+        for(Long productId : productIds){
+            Product product = entityManager.find(Product.class, productId);
+            entityManager.remove(product);
+        }
     }
 
 
