@@ -40,4 +40,23 @@ public class DineInServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("dine_in.jsp");
         dispatcher.forward(request, response);
     }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String section = request.getParameter("section");
+
+        if (section == null || section.isEmpty()) {
+            section = "oferte";
+        }
+        List<ProductDto> products=productsBean.findAllProducts();
+
+
+        List<OrderedProductDto> orderedProducts=orderedProductsBean.findAllProducts();
+
+
+        request.setAttribute("products", products);
+        request.setAttribute("orderedProducts", orderedProducts);
+        request.setAttribute("activeSection", section);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("dine_in.jsp");
+        dispatcher.forward(request, response);
+    }
 }

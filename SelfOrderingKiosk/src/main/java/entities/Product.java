@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity
 @Table(name="product")
 public class Product {
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -16,6 +16,8 @@ public class Product {
     String category;
     String image;
 
+    @Id
+    @GeneratedValue
     public Long getId() {
         return id;
     }

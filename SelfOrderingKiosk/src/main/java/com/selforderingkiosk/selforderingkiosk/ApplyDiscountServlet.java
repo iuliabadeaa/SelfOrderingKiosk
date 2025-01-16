@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-@WebServlet("/apply_discount")
+@WebServlet(name="ApplyDiscount", value="/ApplyDiscount")
 public class ApplyDiscountServlet extends HttpServlet {
 
     @Inject
@@ -47,7 +47,7 @@ public class ApplyDiscountServlet extends HttpServlet {
 
 
             request.setAttribute("total", totalInt.toString());
-            request.setAttribute("section", "oferte"); // Pass section as an attribute
+            request.setAttribute("section", "oferte");
             RequestDispatcher dispatcher = request.getRequestDispatcher("dine_in");
             dispatcher.forward(request, response);
 
@@ -59,6 +59,7 @@ public class ApplyDiscountServlet extends HttpServlet {
             dispatcher.forward(request, response);
 
         }
+        response.sendRedirect(request.getContextPath());
 
 
     }
@@ -72,5 +73,6 @@ public class ApplyDiscountServlet extends HttpServlet {
         }
         return false;
     }
+
 
 }

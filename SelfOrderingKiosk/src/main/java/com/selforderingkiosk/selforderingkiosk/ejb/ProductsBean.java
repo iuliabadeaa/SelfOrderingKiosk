@@ -34,14 +34,6 @@ public class ProductsBean {
         }
     }
 
-    private List<ProductDto> copyProductsToDto(List<Product> list){
-        List<ProductDto> productsDtos=new ArrayList<>();
-        for(Product product : list){
-            ProductDto p=new ProductDto(product.getId(),product.getName(),product.getDescription(),product.getPrice(), product.getCategory(), product.getImage());
-            productsDtos.add(p);
-        }
-        return productsDtos;
-    }
 
     public void deleteProductsById(Collection<Long> productIds) {
         LOG.info("deleteProductsById");
@@ -50,6 +42,26 @@ public class ProductsBean {
             entityManager.remove(product);
         }
     }
+    public Product createProduct(String name,String description,Double price,String category,String image) {
+        LOG.info("createProduct");
+        Product product=new Product();
+        product.setName(name);
+        product.setDescription(description);
+        product.setPrice(price);
+        product.setCategory(category);
+        product.setImage(image);
+        entityManager.persist(product);
+        return product;
 
+    }
+
+    private List<ProductDto> copyProductsToDto(List<Product> list){
+        List<ProductDto> productsDtos=new ArrayList<>();
+        for(Product product : list){
+            ProductDto p=new ProductDto(product.getId(),product.getName(),product.getDescription(),product.getPrice(), product.getCategory(), product.getImage());
+            productsDtos.add(p);
+        }
+        return productsDtos;
+    }
 
 }

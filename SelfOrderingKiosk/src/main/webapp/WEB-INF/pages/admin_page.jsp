@@ -75,6 +75,19 @@
         .delete{
             background: darkred;
         }
+        .form-input {
+            margin-bottom: 15px;
+        }
+        .form-input label {
+            display: block;
+            font-weight: bold;
+        }
+        .form-input input, .form-input textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +105,33 @@
 <div class="content">
     <% if ("add_products".equals(activeSection)) { %>
     <h2>Add products</h2>
+
+
+    <form class="needs-validation" novalidate method="post" action="${pageContext.request.contextPath}/AddProducts">
+        <div class="form-input">
+            <label for="name">Product Name</label>
+            <input type="text" id="name" name="name" required />
+        </div>
+        <div class="form-input">
+            <label for="description">Description</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        <div class="form-input">
+            <label for="price">Price</label>
+            <input type="text" id="price" name="price" step="0.01" required />
+        </div>
+        <div class="form-input">
+            <label for="category">Category</label>
+            <input type="text" id="category" name="category" required />
+        </div>
+        <div class="form-input">
+            <label for="image">Image URL</label>
+            <input type="text" id="image" name="image" required />
+        </div>
+        <button type="submit">Add Product</button>
+    </form>
+
+
     <% } else if ("modify_products".equals(activeSection)) { %>
     <h2>Modifica produse</h2>
     <% } else if ("delete_products".equals(activeSection)) { %>
@@ -134,5 +174,6 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">LOGOUT</button>
     </form>
 </footer>
+<script src="${pageContext.request.contextPath}/scripts/form-validation.js"></script>
 </body>
 </html>

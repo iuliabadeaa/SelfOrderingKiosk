@@ -21,7 +21,7 @@
 <body>
 
 <div class="notification">
-  Product(s) deleted successfully!
+  Action successfull!
 </div>
 
 <script>

@@ -32,10 +32,12 @@ public class CartServlet extends HttpServlet {
         product.setPrice(productPrice);
         product.setQuantity(quantity);
 
+        Double total=0.0;
         boolean found = false;
         for (OrderedProduct p : cart) {
             if (p.getName().equals(product.getName())) {
                 p.setQuantity(p.getQuantity() + product.getQuantity());
+                total += p.getQuantity() * p.getPrice();
                 found = true;
                 break;
             }
@@ -43,9 +45,12 @@ public class CartServlet extends HttpServlet {
 
         if (!found) {
             cart.add(product);
+            total += product.getQuantity() * product.getPrice();
         }
 
         session.setAttribute("cart", cart);
+        session.setAttribute("total", Double.toString(total));
+
 
         response.sendRedirect("dine_in?section=oferte");
     }

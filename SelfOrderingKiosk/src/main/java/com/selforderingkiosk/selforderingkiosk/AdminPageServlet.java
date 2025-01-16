@@ -2,6 +2,7 @@ package com.selforderingkiosk.selforderingkiosk;
 
 import com.selforderingkiosk.selforderingkiosk.common.ProductDto;
 import com.selforderingkiosk.selforderingkiosk.ejb.ProductsBean;
+import entities.Product;
 import jakarta.annotation.security.DeclareRoles;
 import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
@@ -43,15 +44,19 @@ public class AdminPageServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String[] productIdsAsString = request.getParameterValues("products_ids");
-        if(productIdsAsString !=null) {
-            List<Long> productsId=new ArrayList<>();
-            for (String productId : productIdsAsString) {
-                productsId.add(Long.parseLong(productId));
+
+
+            String[] productIdsAsString = request.getParameterValues("products_ids");
+            if(productIdsAsString !=null) {
+                List<Long> productsId=new ArrayList<>();
+                for (String productId : productIdsAsString) {
+                    productsId.add(Long.parseLong(productId));
+                }
+                productsBean.deleteProductsById(productsId);
             }
-            productsBean.deleteProductsById(productsId);
-        }
-        response.sendRedirect("popup_msg.jsp");
+
+        response.sendRedirect(request.getContextPath() + "/popup_msg.jsp");
+
 
     }
 

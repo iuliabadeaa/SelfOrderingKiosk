@@ -309,7 +309,7 @@
             <div style="color: red;">${errorMessage}</div>
         </c:if>
         <div>
-            <form action="apply_discount" method="post">
+            <form action="${pageContext.request.contextPath}/ApplyDiscount" method="post">
                 <input type="hidden" name="total" value="${total}" />
                 <input type="text" id="discount" name="discountCode" placeholder="Introduceți codul de reducere">
                 <button class="add-to-cart" type="submit">APLICĂ CODUL</button>
