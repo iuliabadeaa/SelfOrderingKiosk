@@ -26,7 +26,7 @@ public class ApplyDiscountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        String discount = request.getParameter("discount");
+        String discount = request.getParameter("discountCode");
         String total = request.getParameter("total");
 
         if (total == null || total.trim().isEmpty()) {
